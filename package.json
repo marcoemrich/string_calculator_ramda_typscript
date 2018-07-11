@@ -1,0 +1,33 @@
+{
+  "name": "gol_ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest --watchAll",
+    "test:watch": "npx jest --watchAll"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^23.1.4",
+    "jest": "^22.0.0",
+    "ts-jest": "^23.0.0",
+    "typescript": "^2.9.2"
+  }
+}
