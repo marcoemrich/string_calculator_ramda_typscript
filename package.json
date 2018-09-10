@@ -26,10 +26,10 @@
   "license": "ISC",
   "dependencies": {
     "@types/jest": "^23.1.4",
-    "@types/ramda": "^0.25.35",
     "jest": "^22.0.0",
     "ramda": "^0.25.0",
     "ts-jest": "^23.0.0",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "@types/ramda": "github:types/npm-ramda#dist"
   }
 }
