@@ -1,8 +1,6 @@
 import { map, pipe, split, sum, reduce, add, filter, gt, __, lt, ifElse, has, contains, any, match, replace } from "ramda";
 
 
-const mySum = reduce(add, 0);
-
 const commaSeparatedNumbersFromString = sep => pipe(split(sep), map(Number));
 
 const negative = lt(__, 0);
@@ -10,13 +8,13 @@ const negative = lt(__, 0);
 const anyNegative: (l: number[]) => boolean = 
   any(negative)
 
-const sumOfUnder1000s: (l: number[]) => number = pipe(filter(lt(__, 1000)), mySum);
+const sumOfUnder1000s: (l: number[]) => number = pipe(filter(lt(__, 1000)), sum);
 
 const throwNegativeNumberError = () => { throw Error("Contains a negative number!"); };
 
-const extractSeparator = str => match(/^\/\/(.)\//, str)[1] || ','
+const extractSeparator = str => match(/^\/\/(.)\//, str)[1] || ',';
 
-const removePrefix = str => replace(/^\/\/.\//, '', str)
+const removePrefix = str => replace(/^\/\/.\//, '', str);
 
 const calc: (str: string) => Number =
   str => pipe(
@@ -47,7 +45,6 @@ describe('extractSeparator', () => {
     expect(extractSeparator("1,2,3")).toEqual(",");
   });
 });
-
 
 describe('calc', () => {
   it('should return a single number', () => {
