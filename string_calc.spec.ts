@@ -1,4 +1,4 @@
-import { map, pipe, split, sum, reduce, add, filter, gt, __, lt, ifElse, has, contains, any, match, replace } from "ramda";
+import { map, pipe, split, sum, filter, __, lt, ifElse, any, match, replace } from "ramda";
 
 
 const commaSeparatedNumbersFromString = str => pipe(
