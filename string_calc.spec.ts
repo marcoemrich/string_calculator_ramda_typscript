@@ -1,12 +1,14 @@
 import { map, pipe, split, sum, reduce, add, filter, gt, __, lt, ifElse, has, contains, any, match, replace } from "ramda";
 
 
-const commaSeparatedNumbersFromString = sep => pipe(split(sep), map(Number));
+const commaSeparatedNumbersFromString = str => pipe(
+  removePrefix, 
+  split(extractSeparator(str)), 
+  map(Number))(str);
 
 const negative = lt(__, 0);
 
-const anyNegative: (l: number[]) => boolean = 
-  any(negative)
+const anyNegative: (l: number[]) => boolean = any(negative)
 
 const sumOfUnder1000s: (l: number[]) => number = pipe(filter(lt(__, 1000)), sum);
 
@@ -17,15 +19,13 @@ const extractSeparator = str => match(/^\/\/(.)\//, str)[1] || ',';
 const removePrefix = str => replace(/^\/\/.\//, '', str);
 
 const calc: (str: string) => Number =
-  str => pipe(
-    removePrefix,
-    commaSeparatedNumbersFromString(extractSeparator(str)), 
+  pipe(
+    commaSeparatedNumbersFromString, 
     ifElse( 
       anyNegative, 
       throwNegativeNumberError, 
       sumOfUnder1000s
-  ))(str);
-
+  ));
 
 describe('removePrefix', () => {
   it('should return a string without Prefix', () => {
@@ -73,3 +73,8 @@ describe('calc', () => {
 
 });
 
+describe('commaSeparatedNumbersFromString', () => {
+  it('should allow a custom separator', () => {
+    expect(commaSeparatedNumbersFromString("//x/1x2x3")).toEqual([1, 2, 3]);
+  });
+});
